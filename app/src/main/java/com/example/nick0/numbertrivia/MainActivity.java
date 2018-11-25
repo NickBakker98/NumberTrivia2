@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton addFab;
     private TextView mQuoteTextView;
+    Random r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<TriviaObject> mTriviaObjects = new ArrayList<>();
+
         RecyclerView mTriviaRecyclerView = findViewById(R.id.recyclerview);
-        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+
+        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
         mTriviaRecyclerView.setLayoutManager(mLayoutManager);
         TriviaObjectAdapter mAdapter = new TriviaObjectAdapter(this, mTriviaObjects);
         mTriviaRecyclerView.setAdapter(mAdapter);
@@ -43,9 +46,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Create random number
+                r = new Random();
+                //Laat het random nummer + bijbehorende quote zien in de recyclerView.
             }
         });
 
+        mQuoteTextView = findViewById(R.id.QuoteTextView);
+        
+        requestData();
     }
 
     public void setQuoteTextView(String quoteMessage) {
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestData()
     {
-        com.example.marmm.reminderdemo.NumbersApiService service = com.example.marmm.reminderdemo.NumbersApiService.retrofit.create(com.example.marmm.reminderdemo.NumbersApiService.class);
+        com.example.nick0.numbertrivia.NumbersAPIService service = com.example.nick0.numbertrivia.NumbersAPIService.retrofit.create(com.example.nick0.numbertrivia.NumbersAPIService.class);
         Calendar calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH) + 1; //Calendar.MONTH starts at zero
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
@@ -75,6 +83,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("error",t.toString());
             }
         });
-
     }
 }

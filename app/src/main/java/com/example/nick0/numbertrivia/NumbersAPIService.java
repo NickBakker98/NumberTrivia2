@@ -1,4 +1,4 @@
-package com.example.marmm.reminderdemo;
+package com.example.nick0.numbertrivia;
 
 
 import com.example.nick0.numbertrivia.DayQuoteItem;
@@ -21,7 +21,7 @@ import retrofit2.http.Path;
 
  */
 
-public interface NumbersApiService {
+public interface NumbersAPIService {
 
     String BASE_URL = "http://numbersapi.com/";
 

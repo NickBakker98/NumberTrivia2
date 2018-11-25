@@ -15,6 +15,4 @@ public class TriviaObjectViewHolder extends RecyclerView.ViewHolder {
         mNumberTextView = itemView.findViewById(R.id.QuoteNumber);
         view = itemView;
     }
-
-    
 }

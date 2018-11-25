@@ -27,8 +27,8 @@ public class TriviaObjectAdapter extends RecyclerView.Adapter<TriviaObjectViewHo
         final TriviaObject triviaObject = listTrivia.get(position);
         // The holder argument is used to reference the views inside the viewHolder
         // Populate the views with the data from the list
-        holder.Number.setText(triviaObject.getmNumber());
-        holder.Quote.setText(triviaObject.getmQuote());
+        holder.mNumberTextView.setText(triviaObject.getmNumber());
+        holder.mQuoteTextView.setText(triviaObject.getmQuote());
     }
 
     @Override
