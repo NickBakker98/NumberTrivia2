@@ -22,8 +22,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton addFab;
-    private TextView mQuoteTextView;
     Random r;
+    TriviaObjectViewHolder holder;
+    private int randomnumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         addFab = findViewById(R.id.add_fab);
-
 
         List<TriviaObject> mTriviaObjects = new ArrayList<>();
 
@@ -47,17 +47,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Create random number
                 r = new Random();
-                //Laat het random nummer + bijbehorende quote zien in de recyclerView.
+                r.nextInt(randomnumber);
+                holder.mNumberTextView.setText(randomnumber);
+                //Show random number + quote.
             }
         });
 
-        mQuoteTextView = findViewById(R.id.QuoteTextView);
-        
         requestData();
     }
 
     public void setQuoteTextView(String quoteMessage) {
-        mQuoteTextView.setText(quoteMessage);
+        holder.mQuoteTextView.setText(quoteMessage);
     }
 
     private void requestData()
