@@ -1,8 +1,6 @@
 package com.example.nick0.numbertrivia;
 
 
-import com.example.nick0.numbertrivia.DayQuoteItem;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -51,17 +49,7 @@ public interface NumbersAPIService {
 
      */
 
-    @GET("/{month}/{dayOfMonth}/date?json")
+    @GET("/{number}/{trivia}")
 
-    /**
-
-     * "DayQuoteTime" is the name of the helper class just defined, defining the datamodel, and given as argument.
-
-     * "getTodaysQuote" is the name of the symbol get method. It can be chosen at wish, as long as it is invoked
-
-     * with the same name.
-
-     */
-
-    Call<DayQuoteItem> getTodaysQuote(@Path("month") int monthNumber, @Path("dayOfMonth") int dayOfMonth);
+    Call<NumberQuoteItem> getNumberQuote(@Path("number") int number, @Path("trivia") String trivia);
 }

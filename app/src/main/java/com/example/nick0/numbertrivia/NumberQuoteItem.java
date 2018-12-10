@@ -3,7 +3,7 @@ package com.example.nick0.numbertrivia;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DayQuoteItem {
+public class NumberQuoteItem {
     @SerializedName("text")
     @Expose
     private String text;
@@ -16,6 +16,7 @@ public class DayQuoteItem {
     @SerializedName("type")
     @Expose
     private String type;
+
     public String getText() {
         return text;
     }
