@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,10 +33,8 @@ public class TriviaObjectAdapter extends RecyclerView.Adapter<TriviaObjectViewHo
         final NumberQuoteItem triviaObject = listTrivia.get(position);
         // The holder argument is used to reference the views inside the viewHolder
         // Populate the views with the data from the list
-        holder.mNumberTextView.setText(triviaObject.getText());
-        holder.mQuoteTextView.setText(triviaObject.getNumber());
-
-        requestData();
+        holder.mQuoteTextView.setText(triviaObject.getText());
+        holder.mNumberTextView.setText(triviaObject.getNumber().toString());
     }
 
     @Override
@@ -43,34 +42,14 @@ public class TriviaObjectAdapter extends RecyclerView.Adapter<TriviaObjectViewHo
         return listTrivia.size();
     }
 
-    public void setQuoteTextView(final TriviaObjectViewHolder holder, String quoteMessage) {
-        holder.mQuoteTextView.setText(quoteMessage);
+    public void swapList (ArrayList<NumberQuoteItem> newList) {
+        listTrivia = newList;
+        if(newList != null) {
+            this.notifyDataSetChanged();
+        }
     }
 
-    private void requestData()
-    {
-        com.example.nick0.numbertrivia.NumbersAPIService service = com.example.nick0.numbertrivia.NumbersAPIService.retrofit.create(com.example.nick0.numbertrivia.NumbersAPIService.class);
 
-        int number = 42;
-        String trivia = "trivia";
-        /**
-         * Make an a-synchronous call by enqueing and definition of callbacks.
-         */
-        Call<NumberQuoteItem> call = service.getNumberQuote(number, trivia);
-        call.enqueue(new Callback<NumberQuoteItem>() {
-
-            @Override
-            public void onResponse(Call<NumberQuoteItem> call, Response<NumberQuoteItem> response) {
-                NumberQuoteItem numberQuoteItem = response.body();
-                setQuoteTextView(numberQuoteItem.getText());
-            }
-
-            @Override
-            public void onFailure(Call<NumberQuoteItem> call, Throwable t) {
-                Log.d("error",t.toString());
-            }
-        });
-    }
 }
 
 

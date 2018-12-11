@@ -49,7 +49,7 @@ public interface NumbersAPIService {
 
      */
 
-    @GET("/{number}/{trivia}")
+    @GET("/{number}/{trivia}?json")
 
     Call<NumberQuoteItem> getNumberQuote(@Path("number") int number, @Path("trivia") String trivia);
 }
