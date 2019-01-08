@@ -21,26 +21,31 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Creating variables.
     private FloatingActionButton addFab;
     TriviaObjectAdapter adapter;
     ArrayList<NumberQuoteItem> mTriviaObjects;
     RecyclerView mTriviaRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Linking variables to xml.file
         addFab = findViewById(R.id.add_fab);
-
-        mTriviaObjects = new ArrayList<>();
-
         mTriviaRecyclerView = findViewById(R.id.recyclerview);
 
+        //Creating new ArrayList.
+        mTriviaObjects = new ArrayList<>();
+
+        //Initializing RecyclerView.
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
         mTriviaRecyclerView.setLayoutManager(mLayoutManager);
         TriviaObjectAdapter mAdapter = new TriviaObjectAdapter(this, mTriviaObjects);
         mTriviaRecyclerView.setAdapter(mAdapter);
 
+        //Add an OnClickListener to the addFab.
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Update the user interface.
     private void updateUI(){
         if(adapter == null){
             adapter = new TriviaObjectAdapter(this, mTriviaObjects);
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    //Request the data from the API.
     private void requestData()
     {
         com.example.nick0.numbertrivia.NumbersAPIService service = com.example.nick0.numbertrivia.NumbersAPIService.retrofit.create(com.example.nick0.numbertrivia.NumbersAPIService.class);
